@@ -1,8 +1,73 @@
-<!doctype html><html class="no-js" lang=""><head><meta charset="utf-8"><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1"><title>webapp</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><!-- Place favicon.ico in the root directory --><link rel="stylesheet" href="styles/vendor.css"><link rel="stylesheet" href="styles/main.css"><script src="scripts/vendor/modernizr.js"></script></head><body><!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--><div class="container"><div class="header"><ul class="nav nav-pills pull-right"><li class="active"><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Contact</a></li></ul><h3 class="text-muted">webapp</h3></div><div class="jumbotron"><h1>'Allo, 'Allo!</h1><p class="lead">Always a pleasure scaffolding your apps.</p><p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p></div><div class="row marketing"><div class="col-lg-6"><h4>HTML5 Boilerplate</h4><p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p><h4>Bootstrap</h4><p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p><h4>Modernizr</h4><p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p></div></div><div class="footer"><p>♥ from the Yeoman team</p></div></div><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+<!doctype html><html class="no-js" lang="" ng-app="projectsMiniApp"><head><meta charset="utf-8"><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1"><title>webapp</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><!-- Place favicon.ico in the root directory --><link rel="stylesheet" href="styles/main.css"></head><body><div class="browser" ng-controller="projectsController"><header><div class="tool-bar"><button class="circle-button browser-button"><span class="nucleus"></span></button><div class="title-bar">Featured Work by Jordan Bradley</div><!--<button class="menu-button"></button>--></div><div class="tagline-bar"><a target="_blank" href="https://www.linkedin.com/in/imjbrad">resume</a> / <a target="_blank" href="https://vimeo.com/imjbrad">talk-show</a> /<br style="display: none"><a target="_blank" href="http://www.twitter.com/imjbrad">micro-thoughts</a> / <a target="_blank" href="http://www.instagram.com/imjbrad">pictures</a></div></header><div class="browser-content-container"><div class="page-content-container"><div class="post" ng-repeat="post in posts" ng-mousedown="selectPost($index)" ng-class="{'reveal-post-info': (selectedPost == $index)}"><div class="photo-wrapper"><img class="photo" ng-src="{{ post.image }}"></div><div class="post-info-wrapper" ng-style="{'background-color': post.postInfoBackgroundColor, 'color': post.postInfoTextColor}"><div class="post-info"><div class="title">{{ post.name }}</div><div class="sub-title">{{ post.type }}</div><div class="description">{{ post.description }}</div></div></div></div></div></div></div><img class="gif" src="http://i.giphy.com/xTiTnxatmQVapUTMDC.gif"><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='https://www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');</script><script src="scripts/vendor.js"></script><script src="scripts/plugins.js"></script><script src="scripts/main.js"></script></body></html>
+      ga('create','UA-XXXXX-X');ga('send','pageview');</script><script src="scripts/vendor.js"></script><script src="scripts/plugins.js"></script><script src="scripts/main.js"></script><script>var projectsMiniApp = angular.module("projectsMiniApp", []);
+
+      projectsMiniApp.controller("projectsController", function($scope){
+
+        $(".browser-button").on('touchstart click', function(){
+          console.log("ta");
+          $(".browser").toggleClass("minimize");
+        });
+
+        $scope.posts = [
+          {
+            name: "Pi Daily, 2016",
+            type: "Web App",
+            url: "http://www.pidaily.xyz",
+            description: "Pi is a visual day planning app with the philosophy that wellness is key to sustainable, every day productivity. As you plan your todos and assignments, Pi focuses on sleep, exercise, and healthy eating to keep you on track. As a health conscious productivity platform, Pi aims to change the culture of work to be more considerate of wellness for students and young professionals. (Angular)",
+            image: "images/pi.png",
+            postInfoBackgroundColor: "#e3c686",
+            postInfoTextColor: "#393a3a"
+          },
+          {
+            name: "The Critical Reader, 2015",
+            type: "Chrome Extension",
+            url: "http://www.cr-app.heroku.com",
+            description: "The Critical Reader is an experimental platform for learning about and responding to complex events in the news. A Chrome extension helps users easily compare media perspectives, understand a journalist’s position on a story, and ask questions. (Heroku, Django, and Angular)",
+            image: "images/cr.jpg",
+            postInfoBackgroundColor: "#BF433B",
+            postInfoTextColor: "white"
+          },
+          {
+            name: "Crowds, 2014",
+            type: "iOS App",
+            url: "http://technical.ly/baltimore/2013/12/12/mica-sophomores-look-siphon-users-facebook-events-new-app/",
+            description: "Crowds is an early project for starting parties, hangouts, and spontaneous events on campus. Design by Zak Crapo. (Currently Offline)",
+            image: "images/crowds.jpg",
+            postInfoBackgroundColor: "#f2f2f2",
+            postInfoTextColor: "black"
+          },
+          {
+            name: "Sendasock, 2013",
+            type: "iOS App (Phone Gap)",
+            url: "https://www.buzzfeed.com/katienotopoulos/the-rise-of-the-hookup-app?utm_term=.sp2dYlngL#.bodW5y3bn",
+            description: "Sendasock is a clever product of my freshmen year at MICA. The app is a cute, modern implementation of the classic sock (or tie) on the door knob. Design by Zak Crapo.",
+            image: "images/sendasock.png",
+            postInfoBackgroundColor: "black",
+            postInfoTextColor: "white"
+          }
+        ];
+
+
+        $scope.selectPost = function(i){
+          if($scope.selectedPost == i){
+            return $scope.selectedPost = null;
+          }
+          $scope.selectedPost = i;
+        }
+
+      });
+
+      projectsMiniApp.directive("heightHelper", function($timeout){
+        return {
+          restrict: "A",
+          link: function($scope, $el, $attr) {
+            $timeout(function(){
+              $el.css("height", $el.height());
+            });
+          }
+        }
+      });</script></body></html>
