@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js" lang="" ng-app="projectsMiniApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>webapp</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <!-- endbuild -->
+
+  </head>
+  <body>
+
+    <div class="browser" ng-controller="projectsController">
+      <header>
+        <div class="tool-bar">
+          <button class="circle-button browser-button"><span class="nucleus"></span></button>
+          <div class="title-bar">Featured Work by Jordan Bradley</div>
+          <!--<button class="menu-button"></button>-->
+        </div>
+        <div class="tagline-bar"><a target="_blank" href="https://www.linkedin.com/in/imjbrad">resume</a> / <a target="_blank" href="https://vimeo.com/imjbrad">talk-show</a> / <br style="display: none"> <a target="_blank" href="http://www.twitter.com/imjbrad">micro-thoughts</a> / <a target="_blank" href="http://www.instagram.com/imjbrad">pictures</a></div>
+      </header>
+      <div class="browser-content-container">
+        <div class="page-content-container">
+          <div class="post" ng-repeat="post in posts" ng-mousedown="selectPost($index)" ng-class="{'reveal-post-info': (selectedPost == $index)}">
+            <div class="photo-wrapper">
+              <img class="photo" ng-src="{{ post.image }}"/>
+            </div>
+            <div class="post-info-wrapper" ng-style="{'background-color': post.postInfoBackgroundColor, 'color': post.postInfoTextColor}">
+              <div class="post-info">
+                <div class="title">{{ post.name }}</div>
+                <div class="sub-title">{{ post.type }}</div>
+                <div class="description">{{ post.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <img class="gif" src="http://i.giphy.com/xTiTnxatmQVapUTMDC.gif">
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/plugins.js -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+    <script>
+
+      var projectsMiniApp = angular.module("projectsMiniApp", []);
+
+      projectsMiniApp.controller("projectsController", function($scope){
+
+        $(".browser-button").on('touchstart click', function(){
+          console.log("ta");
+          $(".browser").toggleClass("minimize");
+        });
+
+        $scope.posts = [
+          {
+            name: "Pi Daily, 2016",
+            type: "Web App",
+            url: "http://www.pidaily.xyz",
+            description: "Pi is a visual day planning app with the philosophy that wellness is key to sustainable, every day productivity. As you plan your todos and assignments, Pi focuses on sleep, exercise, and healthy eating to keep you on track. As a health conscious productivity platform, Pi aims to change the culture of work to be more considerate of wellness for students and young professionals. (Angular)",
+            image: "images/pi.png",
+            postInfoBackgroundColor: "#e3c686",
+            postInfoTextColor: "#393a3a"
+          },
+          {
+            name: "The Critical Reader, 2015",
+            type: "Chrome Extension",
+            url: "http://www.cr-app.heroku.com",
+            description: "The Critical Reader is an experimental platform for learning about and responding to complex events in the news. A Chrome extension helps users easily compare media perspectives, understand a journalist’s position on a story, and ask questions. (Heroku, Django, and Angular)",
+            image: "images/cr.jpg",
+            postInfoBackgroundColor: "#BF433B",
+            postInfoTextColor: "white"
+          },
+          {
+            name: "Crowds, 2014",
+            type: "iOS App",
+            url: "http://technical.ly/baltimore/2013/12/12/mica-sophomores-look-siphon-users-facebook-events-new-app/",
+            description: "Crowds is an early project for starting parties, hangouts, and spontaneous events on campus. Design by Zak Crapo. (Currently Offline)",
+            image: "images/crowds.jpg",
+            postInfoBackgroundColor: "#f2f2f2",
+            postInfoTextColor: "black"
+          },
+          {
+            name: "Sendasock, 2013",
+            type: "iOS App (Phone Gap)",
+            url: "https://www.buzzfeed.com/katienotopoulos/the-rise-of-the-hookup-app?utm_term=.sp2dYlngL#.bodW5y3bn",
+            description: "Sendasock is a clever product of my freshmen year at MICA. The app is a cute, modern implementation of the classic sock (or tie) on the door knob. Design by Zak Crapo.",
+            image: "images/sendasock.png",
+            postInfoBackgroundColor: "black",
+            postInfoTextColor: "white"
+          }
+        ];
+
+
+        $scope.selectPost = function(i){
+          if($scope.selectedPost == i){
+            return $scope.selectedPost = null;
+          }
+          $scope.selectedPost = i;
+        }
+
+      });
+
+      projectsMiniApp.directive("heightHelper", function($timeout){
+        return {
+          restrict: "A",
+          link: function($scope, $el, $attr) {
+            $timeout(function(){
+              $el.css("height", $el.height());
+            });
+          }
+        }
+      });
+
+    </script>
+
+  </body>
+</html>

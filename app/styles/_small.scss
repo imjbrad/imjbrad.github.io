@@ -1,0 +1,90 @@
+@media (max-width: 800px){
+
+  $top: 4vh;
+
+  .browser {
+    width: 90%;
+    left: 5vw;
+    top: $top;
+    height: calc(100% - #{2*$top});
+
+    header {
+
+      .title-bar{
+        .job-title {
+          display: none;
+        }
+      }
+
+      .tool-bar {
+        padding: 0 15px;
+
+        .circle-button {
+          margin-right: 0;
+        }
+
+      }
+
+      .tagline-bar{
+        line-height: 1.5em;
+        height: auto;
+        padding: 10px 14px;
+
+        @media (min-width: 320px) and (max-width: 414px){
+          br {
+            display: inline !important;
+          }
+        }
+
+      }
+
+    }
+
+    .browser-content-container {
+
+      .page-content-container {
+        padding: 20px;
+
+        .post {
+
+          margin-bottom: 20px;
+
+          .post-info-wrapper {
+
+            .post-info {
+
+              padding: 20px;
+              padding-bottom: 20%;
+
+              margin: auto;
+
+              .title {
+                font-size: 13px;
+              }
+
+              .sub-title {
+                font-size: 12px;
+              }
+
+              .description {
+                font-size: 11px;
+                line-height: 1.6em;
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .gif {
+    width: 70%;
+  }
+
+}
